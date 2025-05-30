@@ -1,3 +1,5 @@
+if true then return {} end;
+
 return {
   { -- You can easily change to a different colorscheme.
     -- Change the name of the colorscheme plugin below, and then
@@ -9,6 +11,7 @@ return {
     config = function()
       ---@diagnostic disable-next-line: missing-fields
       require('tokyonight').setup {
+        style = "night",
         styles = {
           comments = { italic = false }, -- Disable italics in comments
         },

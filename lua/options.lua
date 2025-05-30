@@ -7,7 +7,7 @@
 vim.o.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.o.relativenumber = true
+vim.o.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = 'a'
@@ -54,8 +54,8 @@ vim.o.splitbelow = true
 --  It is very similar to `vim.o` but offers an interface for conveniently interacting with tables.
 --   See `:help lua-options`
 --   and `:help lua-options-guide`
-vim.o.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+-- vim.o.list = true
+-- vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 -- Preview substitutions live, as you type!
 vim.o.inccommand = 'split'
@@ -70,5 +70,27 @@ vim.o.scrolloff = 10
 -- instead raise a dialog asking if you wish to save the current file(s)
 -- See `:help 'confirm'`
 vim.o.confirm = true
+
+-- ADDITIONAL OPTIONS
+vim.o.wrap = true
+vim.o.shellquote = ""
+vim.o.shellxquote = ""
+vim.o.shell = vim.fn.has "win32" == 1 and "pwsh" or "sh"
+vim.o.shellcmdflag = vim.fn.has "win32" == 1 and "-NoLogo -NoProfile -Command" or "-c"
+
+-- Set the number of spaces a tab "counts" for.
+vim.opt.tabstop = 2
+
+-- Set the number of spaces to use for indentation.
+vim.opt.shiftwidth = 2
+
+-- When inserting a tab, insert spaces instead.
+vim.opt.expandtab = true
+
+-- Copy indent from the previous line.
+vim.opt.autoindent = true
+
+-- Smart indentation for C-like languages (and many others).
+vim.opt.smartindent = true
 
 -- vim: ts=2 sts=2 sw=2 et
