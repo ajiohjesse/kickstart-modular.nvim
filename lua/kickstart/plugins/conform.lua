@@ -1,16 +1,16 @@
+-- if true then return {} end
+
 return {
-  { -- Autoformat
-    'stevearc/conform.nvim',
-    event = { 'BufWritePre' },
-    cmd = { 'ConformInfo' },
+  {
+    "stevearc/conform.nvim",
+    event = { "BufWritePre" },
+    cmd = { "ConformInfo" },
     keys = {
       {
-        '<leader>f',
-        function()
-          require('conform').format { async = true, lsp_format = 'fallback' }
-        end,
-        mode = '',
-        desc = '[F]ormat buffer',
+        "<leader>f",
+        function() require("conform").format { async = true, lsp_format = "fallback" } end,
+        mode = "",
+        desc = "[F]ormat buffer",
       },
     },
     opts = {
@@ -25,29 +25,52 @@ return {
         else
           return {
             timeout_ms = 3000,
-            lsp_format = 'fallback',
+            lsp_format = "fallback",
           }
         end
       end,
       formatters_by_ft = {
-        lua = { 'stylua' },
+        lua = { "stylua" },
+        -- Configure formatters for JavaScript and TypeScript files
         javascript = { "biome", "biome-organize-imports" },
         javascriptreact = { "biome", "biome-organize-imports" },
         typescript = { "biome", "biome-organize-imports" },
         typescriptreact = { "biome", "biome-organize-imports" },
         go = { "goimports", "gofmt" },
         rust = { "rustfmt" },
-        -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "black" },
-        --
-        -- You can use 'stop_after_first' to run the first available formatter from the list
-        -- javascript = { "prettierd", "prettier", stop_after_first = true },
+        -- Add other file types and their formatters here
+        html = { "prettier" },
+        css = { "prettier" },
+        scss = { "prettier" },
+        less = { "prettier" },
+        json = { "prettier" },
+        jsonc = { "prettier" },
+        yaml = { "prettier" },
+        markdown = { "prettier" },
+        graphql = { "prettier" },
+        vue = { "prettier" },
+        svelte = { "prettier" },
+        xml = { "prettier" },
       },
       formatters = {
+        -- Your existing biome formatter configuration
         biome = {
           command = "biome",
           args = { "check", "--write", "--stdin-file-path", "$FILENAME" },
           stdin = true,
+          -- Add this condition to check for biome.json
+          condition = function(ctx) return vim.fn.findfile("biome.json", vim.fn.getcwd(), ctx.filename) ~= "" end,
+        },
+        -- Configure the Prettier formatter
+        prettier = {
+          command = "prettier",
+          -- Optional: specify the command if it's not in your PATH
+          -- command = "/path/to/your/prettier",
+          -- Arguments that tell Prettier to format stdin and specify the file path
+          args = { "--stdin-filepath", "$FILENAME" },
+          stdin = true,
+          -- Prettier is the default, so we don't need a specific condition here
+          -- unless you want to prevent it from running in certain cases.
         },
       },
     },
