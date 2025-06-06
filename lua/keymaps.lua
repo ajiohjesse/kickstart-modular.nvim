@@ -30,7 +30,7 @@ map("n", "<leader>9", "$", "Go to end of line")
 -- map("i", "00", "<Esc>0i", "Go to start of line")
 
 -- Save
-map("i", "<C-s>", ":write!<CR>", "Save file")
+map("i", "<C-s>", "<Esc>:write!<CR>i", "Save file")
 map("n", "<Leader>w", ":write!<CR>", "Save file")
 
 -- Exit insert mode

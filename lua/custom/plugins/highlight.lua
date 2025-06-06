@@ -6,7 +6,7 @@ return {
       user_default_options = {
         tailwind = true,
         css = true,
-        mode = "virtualtext", -- "foreground" | "virtualtext"
+        mode = "background", -- "foreground" | "virtualtext"
       },
     }
   end,

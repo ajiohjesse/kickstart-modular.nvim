@@ -91,4 +91,7 @@ vim.opt.autoindent = true
 -- Smart indentation for C-like languages (and many others).
 vim.opt.smartindent = true
 
+-- cursor
+vim.o.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,v:ver100"
+
 -- vim: ts=2 sts=2 sw=2 et
