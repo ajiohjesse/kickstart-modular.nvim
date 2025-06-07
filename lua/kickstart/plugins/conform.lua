@@ -32,10 +32,10 @@ return {
       formatters_by_ft = {
         lua = { "stylua" },
         -- Configure formatters for JavaScript and TypeScript files
-        javascript = { "biome", "biome-organize-imports" },
-        javascriptreact = { "biome", "biome-organize-imports" },
-        typescript = { "biome", "biome-organize-imports" },
-        typescriptreact = { "biome", "biome-organize-imports" },
+        javascript = { "biome", "prettier" },
+        javascriptreact = { "biome", "prettier" },
+        typescript = { "biome", "prettier" },
+        typescriptreact = { "biome", "prettier" },
         go = { "goimports", "gofmt" },
         rust = { "rustfmt" },
         -- Add other file types and their formatters here
@@ -53,24 +53,39 @@ return {
         xml = { "prettier" },
       },
       formatters = {
-        -- Your existing biome formatter configuration
         biome = {
           command = "biome",
           args = { "check", "--write", "--stdin-file-path", "$FILENAME" },
           stdin = true,
-          -- Add this condition to check for biome.json
-          condition = function(ctx) return vim.fn.findfile("biome.json", vim.fn.getcwd(), ctx.filename) ~= "" end,
+          condition = function(ctx) return vim.fn.filereadable(vim.fn.getcwd() .. "/biome.json") == 1 end,
         },
-        -- Configure the Prettier formatter
         prettier = {
           command = "prettier",
-          -- Optional: specify the command if it's not in your PATH
-          -- command = "/path/to/your/prettier",
-          -- Arguments that tell Prettier to format stdin and specify the file path
           args = { "--stdin-filepath", "$FILENAME" },
           stdin = true,
-          -- Prettier is the default, so we don't need a specific condition here
-          -- unless you want to prevent it from running in certain cases.
+          condition = function(ctx)
+            local configs = {
+              ".prettierrc",
+              ".prettierrc.json",
+              ".prettierrc.js",
+              "prettier.config.js",
+              ".prettierrc.yaml",
+              ".prettierrc.yml",
+              "package.json", -- fallback, check if it contains a "prettier" key
+            }
+            for _, file in ipairs(configs) do
+              local path = vim.fn.getcwd() .. "/" .. file
+              if vim.fn.filereadable(path) == 1 then
+                if file == "package.json" then
+                  local json = vim.fn.json_decode(vim.fn.readfile(path))
+                  if json and json.prettier then return true end
+                else
+                  return true
+                end
+              end
+            end
+            return false
+          end,
         },
       },
     },

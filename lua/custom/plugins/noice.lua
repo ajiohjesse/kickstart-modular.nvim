@@ -22,7 +22,7 @@ return {
     },
     views = {
       mini = {
-        timeout = 2000,
+        timeout = 500,
       },
     },
   },
@@ -36,7 +36,7 @@ return {
     -- Optional notify setup
     require("notify").setup {
       merge_duplicates = true,
-      timeout = 1000,
+      timeout = 500,
       background_colour = "#1e1e2e",
       render = "default",
       stages = "fade",

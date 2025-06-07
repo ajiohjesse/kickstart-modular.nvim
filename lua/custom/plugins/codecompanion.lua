@@ -5,6 +5,10 @@ return {
     "ravitemer/codecompanion-history.nvim",
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
+    {
+      "MeanderingProgrammer/render-markdown.nvim",
+      ft = { "codecompanion" },
+    },
   },
   opts = {
     extensions = {
@@ -23,26 +27,20 @@ return {
     },
     adapters = {
       gemini = function()
-        -- Read the API key from an environment variable
         local gemini_api_key = vim.env.GEMINI_API_KEY
-
-        -- Check if the environment variable is set
         if not gemini_api_key or gemini_api_key == "" then error "GEMINI_API_KEY environment variable is not set!" end
 
         return require("codecompanion.adapters").extend("gemini", {
+          schema = {
+            model = {
+              default = "gemini-2.0-flash-lite",
+            },
+          },
           env = {
-            -- Use the value from the environment variable
             api_key = gemini_api_key,
           },
         })
       end,
-    },
-    keys = {
-      { "<leader>i", "", desc = "AI" },
-      { "<leader>ic", "<cmd>CodeCompanion<cr>", desc = "CodeCompanion" },
-      { "<leader>iC", "<cmd>CodeCompanionChat<cr>", desc = "CodeCompanion Chat" },
-      { "<leader>ia", "<cmd>CodeCompanionActions<cr>", desc = "CodeCompanion Actions" },
-      { "<leader>id", "<cmd>CodeCompanionCmd<cr>", desc = "CodeCompanion CMD" },
     },
     strategies = {
       chat = {
@@ -53,6 +51,11 @@ return {
       },
       cmd = {
         adapter = "gemini",
+      },
+    },
+    display = {
+      diff = {
+        provider = "mini_diff",
       },
     },
   },

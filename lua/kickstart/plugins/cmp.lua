@@ -23,10 +23,11 @@ return {
           expand = function(args) luasnip.lsp_expand(args.body) end,
         },
         sources = {
-          { name = "path" },
+          { name = "path", keyword_length = 1 },
           { name = "nvim_lsp", keyword_length = 1 },
           { name = "buffer", keyword_length = 3 },
           { name = "luasnip", keyword_length = 2 },
+          { name = "codecompanion" },
         },
         window = {
           documentation = cmp.config.window.bordered(),

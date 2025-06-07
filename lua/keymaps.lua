@@ -121,9 +121,11 @@ map("n", "<Leader>le", "<cmd>lua vim.diagnostic.open_float()<CR>", "Open float w
 map("n", "<Leader>g", "", "Git")
 
 -- CodeCompanion
-map("n", "<leader>mm", ":CodeCompanionMenu<CR>", "Show CodeCompanion command menu")
-map("n", "<leader>me", ":CodeCompanionChat Toggle<CR>", "CodeCompanion toggle chat")
-map("n", "<leader>ma", ":CodeCompanionActions<CR>", "Show CodeCompanion actions menu")
+map("n", "<leader>i", "", "AI")
+map("n", "<leader>ic", "<cmd>CodeCompanion<CR>", "CodeCompanion")
+map("n", "<leader>iC", "<cmd>CodeCompanionChat<CR>", "CodeCompanion Chat")
+map("n", "<leader>ia", "<cmd>CodeCompanionActions<CR>", "CodeCompanion Actions")
+map("n", "<leader>id", "<cmd>CodeCompanionCmd<CR>", "CodeCompanion CMD")
 
 vim.keymap.set("i", "<C-n>", function()
   local cmp = require "cmp"

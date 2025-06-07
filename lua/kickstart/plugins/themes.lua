@@ -1,5 +1,12 @@
 return {
   {
+    "rebelot/kanagawa.nvim",
+    config = function()
+      require("kanagawa").setup()
+      vim.cmd.colorscheme "kanagawa"
+    end,
+  },
+  {
     "rose-pine/neovim",
     name = "rose-pine",
     -- config = function() vim.cmd "colorscheme rose-pine" end,
@@ -36,7 +43,7 @@ return {
       require("gruvbox").setup {
         constrast = "soft",
       }
-      vim.cmd.colorscheme "gruvbox"
+      -- vim.cmd.colorscheme "gruvbox"
     end,
   },
 }
