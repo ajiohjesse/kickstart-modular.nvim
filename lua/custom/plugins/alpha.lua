@@ -5,7 +5,7 @@ return {
     local alpha = require "alpha"
     local dashboard = require "alpha.themes.dashboard"
 
-    -- ASCII Art Header (you can change this)
+  
     dashboard.section.header.val = {
       [[ ██████╗ ███████╗██╗  ██╗██╗  ██╗ ]],
       [[ ██╔══██╗██╔════╝██║  ██║╚██╗██╔╝ ]],
