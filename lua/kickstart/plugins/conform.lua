@@ -61,9 +61,9 @@ return {
         },
         prettier = {
           command = "prettier",
-          args = { "--stdin-filepath", "$FILENAME" },
+          args = { "--stdin-filepath", "$FILENAME", "--config", vim.fn.getcwd() .. "/.prettierrc" },
           stdin = true,
-          condition = function(ctx)
+          condition = function()
             local configs = {
               ".prettierrc",
               ".prettierrc.json",
