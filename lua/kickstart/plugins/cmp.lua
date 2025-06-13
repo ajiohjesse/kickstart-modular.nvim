@@ -23,6 +23,7 @@ return {
           expand = function(args) luasnip.lsp_expand(args.body) end,
         },
         sources = {
+          { name = "supermaven" },
           { name = "path", keyword_length = 1 },
           { name = "nvim_lsp", keyword_length = 1 },
           { name = "buffer", keyword_length = 3 },

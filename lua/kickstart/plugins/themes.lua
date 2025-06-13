@@ -3,13 +3,13 @@ return {
     "rebelot/kanagawa.nvim",
     config = function()
       require("kanagawa").setup()
-      vim.cmd.colorscheme "kanagawa"
+      -- vim.cmd.colorscheme "kanagawa"
     end,
   },
   {
     "rose-pine/neovim",
     name = "rose-pine",
-    -- config = function() vim.cmd "colorscheme rose-pine" end,
+    config = function() vim.cmd "colorscheme rose-pine-moon" end,
   },
   {
     "folke/tokyonight.nvim",

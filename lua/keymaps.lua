@@ -1,6 +1,3 @@
--- [[ Basic Keymaps ]]
--- See `:help vim.keymap.set()`
-
 -- Clear highlights on search when pressing <Esc> in normal mode
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
@@ -17,10 +14,10 @@ vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right win
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
-vim.keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" }) -- split window vertically
-vim.keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" }) -- split window horizontally
-vim.keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" }) -- make split windows equal width & height
-vim.keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }) -- close current split window
+vim.keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
+vim.keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })
+vim.keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" })
+vim.keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" })
 
 -- Helper for cleaner mappings
 local function map(mode, lhs, rhs, desc) vim.keymap.set(mode, lhs, rhs, { noremap = true, silent = true, desc = desc }) end
@@ -52,9 +49,6 @@ map("v", "<A-k>", ":move '<-2<CR>gv=gv", "Move selection up")
 -- Close terminal
 map("t", "<C-q>", "<C-\\><C-n>:q<CR>", "Close terminal")
 
--- Close buffer
-map("n", "<Leader>q", ":q<CR>", "Close buffer")
-
 -- Resize buffer
 map("n", "<C-Up>", ":resize +2<CR>", "Increase buffer height")
 map("n", "<C-Down>", ":resize -2<CR>", "Decrease buffer height")
@@ -70,9 +64,6 @@ map("n", "<Leader>tf", ":ToggleTerm direction=float<CR>", "Toggle floating termi
 -- Barbar buffer navigation
 map("n", "<A-,>", "<Cmd>BufferPrevious<CR>", "Previous buffer")
 map("n", "<A-.>", "<Cmd>BufferNext<CR>", "Next buffer")
--- map("n", "<Right>", "<Cmd>BufferPrevious<CR>", "Previous buffer")
--- map("n", "<Left>", "<Cmd>BufferNext<CR>", "Next buffer")
---
 map("n", "<S-l>", ":bnext<CR>", "Next buffer")
 map("n", "<S-h>", ":bprevious<CR>", "Previous buffer")
 
@@ -111,6 +102,7 @@ map("n", "<Leader>bl", "<Cmd>BufferOrderByLanguage<CR>", "Sort buffers by langua
 map("n", "<Leader>bw", "<Cmd>BufferOrderByWindowNumber<CR>", "Sort buffers by window number")
 
 -- LSP
+map("n", "<Leader>l", "", "LSP")
 map("n", "<Leader>ld", "<cmd>lua vim.lsp.buf.definition()<CR>", "Go to definition")
 map("n", "<Leader>li", "<cmd>lua vim.lsp.buf.implementation()<CR>", "Go to implementation")
 map("n", "<Leader>lt", "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Go to type definition")
@@ -135,7 +127,7 @@ map("n", "<leader>id", "<cmd>CodeCompanionCmd<CR>", "CodeCompanion CMD")
 vim.keymap.set("i", "<C-n>", function()
   local cmp = require "cmp"
   if cmp and cmp.visible() then
-    cmp.abort() -- optional: close the menu if it's already open
+    cmp.abort()
   else
     cmp.complete()
   end

@@ -1,6 +1,3 @@
--- Enable biome LSP globally
--- vim.lsp.enable "biome"
-
 return {
   {
     -- Lua LSP for Neovim config, runtime, and plugins

@@ -31,6 +31,7 @@ local config = function()
       Operator = "", -- nf-cod-symbol_operator
       TypeParameter = "", -- nf-cod-symbol_type_parameter
       Copilot = "", -- GitHub Copilot logo
+      Supermaven = "",
     },
   }
 end

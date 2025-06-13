@@ -23,8 +23,21 @@ return {
       },
     },
     no_name_title = "untitled",
-    -- insert_at_start = true,
-    -- …etc.
+
+    -- Add offset for NeoTree on the right
+    sidebar_filetypes = {
+      NvimTree = true,
+      ["neo-tree"] = true,
+    },
+
+    -- Offset for right-side NeoTree
+    offset = {
+      filetype = "neo-tree",
+      text = "File Explorer",
+      highlight = "Directory",
+      text_align = "right",
+      separator = true,
+    },
   },
   version = "^1.0.0",
 }

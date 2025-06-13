@@ -30,3 +30,5 @@ vim.api.nvim_set_hl(0, "buffercurrentseparator", {
   fg = "#eff1f5",
   bg = "#85c1dc",
 })
+
+vim.api.nvim_set_hl(0, "CmpItemKindSupermaven", { fg = "#6CC644" })
